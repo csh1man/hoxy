@@ -20,6 +20,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	implementation 'org.springframework.boot:spring-boot-starter-mail' // Email
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' // html sending for email
+
 }
 
 tasks.named('test') {

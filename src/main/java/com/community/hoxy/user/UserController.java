@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class UserController {
     @GetMapping("/test")
     public String test(){
-        System.out.println("이것은 테스트입니다.");
+        System.out.println("this is a test");
         return "hoxy project test";
     }
 }

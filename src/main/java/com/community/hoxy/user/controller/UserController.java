@@ -1,4 +1,4 @@
-package com.community.hoxy.user;
+package com.community.hoxy.user.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

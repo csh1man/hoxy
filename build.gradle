@@ -22,7 +22,8 @@ dependencies {
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 	implementation 'org.springframework.boot:spring-boot-starter-mail' // Email
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' // html sending for email
-
+	implementation 'mysql:mysql-connector-java:8.0.26' //mysql 연동
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'//jpa 연동
 }
 
 tasks.named('test') {

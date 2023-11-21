@@ -25,4 +25,5 @@ public class CompanyController {
         List<CompanyInfo> companyInfos = companyService.getAllCompanies();
         return ResponseEntity.ok(companyInfos);
     }
+
 }

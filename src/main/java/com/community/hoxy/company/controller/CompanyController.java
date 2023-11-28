@@ -3,9 +3,9 @@ package com.community.hoxy.company.controller;
 import com.community.hoxy.company.entity.CompanyInfo;
 import com.community.hoxy.company.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,4 +26,17 @@ public class CompanyController {
         return ResponseEntity.ok(companyInfos);
     }
 
+    /**
+     * 관리자페이지에서 회사를 추가할 때 사용하는 함수
+     */
+    @PostMapping(value="/company/insert-new")
+    public ResponseEntity<?> insertCompanyInfo(@RequestBody CompanyInfo companyInfo){
+        try{
+            CompanyInfo newCompany = companyService.insertNewCompany(companyInfo);
+            return ResponseEntity.ok(newCompany);
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error Message :" + e.getMessage());
+        }
+    }
 }

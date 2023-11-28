@@ -15,4 +15,12 @@ public class CompanyService {
     public List<CompanyInfo> getAllCompanies(){
         return companyRepository.findAll();
     }
+
+    /**
+     * 회사 정보 데이터 삽입
+     * @param companyInfo 회사정보
+     */
+    public CompanyInfo insertNewCompany(CompanyInfo companyInfo){
+        return companyRepository.save(companyInfo);
+    }
 }

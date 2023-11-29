@@ -3,9 +3,11 @@ package com.community.hoxy.user.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
+@Table(name="user_info")
 public class UserInfo {
     @Id
     @Column(name="id")

@@ -19,4 +19,8 @@ public class LoginService {
                 .orElseThrow(IllegalArgumentException::new);
         return jwtTokenProvider.createToken(userInfo.getId());
     }
+
+    public boolean isValidToken(String token){
+        return jwtTokenProvider.validateToken(token);
+    }
 }

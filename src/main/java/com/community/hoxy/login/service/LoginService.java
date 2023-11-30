@@ -1,5 +1,6 @@
 package com.community.hoxy.login.service;
 
+import com.community.hoxy.exception.dto.SimpleResponse;
 import com.community.hoxy.login.dto.LoginRequest;
 import com.community.hoxy.login.provider.JwtTokenProvider;
 import com.community.hoxy.user.entity.UserInfo;
@@ -20,7 +21,7 @@ public class LoginService {
         return jwtTokenProvider.createToken(userInfo.getId());
     }
 
-    public boolean isValidToken(String token){
-        return jwtTokenProvider.validateToken(token);
+    public SimpleResponse isValidToken(String id, String token){
+        return jwtTokenProvider.isValidToken(id, token);
     }
 }

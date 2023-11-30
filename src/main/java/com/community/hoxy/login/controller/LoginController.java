@@ -1,5 +1,7 @@
 package com.community.hoxy.login.controller;
 
+import com.community.hoxy.exception.dto.SimpleResponse;
+import com.community.hoxy.exception.msg.ExceptionCode;
 import com.community.hoxy.login.dto.LoginRequest;
 import com.community.hoxy.login.dto.LoginResponse;
 import com.community.hoxy.login.dto.TokenInfo;
@@ -27,15 +29,12 @@ public class LoginController {
 
     /**
      * 로그인 시도
+     * @param authorization 발급받은 토큰 값
+     * @param loginRequest 아이디/패스워드 정보
      */
-    @GetMapping("/login")
-    public ResponseEntity<LoginResponse> login(@RequestHeader(value="Authorization", required = true) String authorization){
-        boolean tokenValidation = loginService.isValidToken(authorization);
-        if(tokenValidation){
-            return ResponseEntity.ok(new LoginResponse(1, "Valid Token"));
-        }else{
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new LoginResponse(2, "invalid token"));
-        }
-
+    @PostMapping("/login")
+    public ResponseEntity<SimpleResponse> login(@RequestHeader(value="Authorization", required = true) String authorization, @RequestBody LoginRequest loginRequest){
+        SimpleResponse tokenValidation = loginService.isValidToken(loginRequest.getId(), authorization);
+        return ResponseEntity.status(tokenValidation.getRspCode()).body(tokenValidation);
     }
 }

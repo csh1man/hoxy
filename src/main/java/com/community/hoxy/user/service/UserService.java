@@ -1,5 +1,6 @@
 package com.community.hoxy.user.service;
 
+import com.community.hoxy.user.dto.UserInsertDTO;
 import com.community.hoxy.user.entity.UserInfo;
 import com.community.hoxy.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,5 +49,15 @@ public class UserService {
         }else{
             return 2;
         }
+    }
+
+    /**
+     * 클라이언트로부터 받은 DTO값을 userInfoEntity로 변경하여 디비에 저장한다.
+     * @param userInsertDTO 컨드톨러로부터 받은 userInsertDTO
+     * @return 디비에 저장된 데이터를 반환
+     */
+    public UserInfo registerUser(UserInsertDTO userInsertDTO){
+        UserInfo userInfo = UserInfo.from(userInsertDTO);
+        return userRepository.save(userInfo);
     }
 }

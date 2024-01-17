@@ -1,25 +1,16 @@
 package com.community.hoxy.post.dto;
 
-public class PostDTO {
-    private String field;
-    private String writer;
+public class PostInsertDTO {
+    private String userId;
     private String title;
     private String content;
 
-    public String getField() {
-        return field;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setField(String field) {
-        this.field = field;
-    }
-
-    public String getWriter() {
-        return writer;
-    }
-
-    public void setWriter(String writer) {
-        this.writer = writer;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getTitle() {

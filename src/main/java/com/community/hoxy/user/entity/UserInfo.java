@@ -1,9 +1,8 @@
 package com.community.hoxy.user.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.community.hoxy.user.dto.UserInsertDTO;
+
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -18,6 +17,8 @@ public class UserInfo {
     private String nickName;
     @Column(name="company")
     private String company;
+    @Column(name="mbti")
+    private String mbti;
     @Column(name="reg_date")
     private Date regDate;
     @Column(name="mod_date")
@@ -55,6 +56,14 @@ public class UserInfo {
         this.company = company;
     }
 
+    public String getMbti() {
+        return mbti;
+    }
+
+    public void setMbti(String mbti) {
+        this.mbti = mbti;
+    }
+
     public Date getRegDate() {
         return regDate;
     }
@@ -69,5 +78,28 @@ public class UserInfo {
 
     public void setModDate(Date modDate) {
         this.modDate = modDate;
+    }
+
+    @PrePersist
+    protected void prePersist(){
+        if(this.regDate == null){
+            this.regDate = new Date();
+        }
+    }
+
+    @PreUpdate
+    protected void preUpdate(){
+        this.modDate = new Date();
+    }
+
+    public static UserInfo from(UserInsertDTO dto){
+        UserInfo userInfo = new UserInfo();
+        userInfo.setId(dto.getId());
+        userInfo.setPwd(dto.getPwd());
+        userInfo.setNickName(dto.getNickname());
+        userInfo.setCompany(dto.getCompany());
+        userInfo.setMbti(dto.getMbti());
+
+        return userInfo;
     }
 }

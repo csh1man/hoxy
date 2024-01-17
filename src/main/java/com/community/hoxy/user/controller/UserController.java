@@ -1,6 +1,7 @@
 package com.community.hoxy.user.controller;
 
 import com.community.hoxy.user.dto.UserInsertDTO;
+import com.community.hoxy.user.entity.UserInfo;
 import com.community.hoxy.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +16,13 @@ public class UserController {
     private UserService userService;
     /**
      * 회원가입 절차에서 최종적으로 사용자 등록
+     * @param userInsertDTO 클라이언트에서 사용자가 입력한 사용자 정보
      */
     @PostMapping(value="/user/register")
-    public void registerUser(@ModelAttribute UserInsertDTO userInsertDTO){
+    public ResponseEntity<UserInfo> registerUser(@RequestBody UserInsertDTO userInsertDTO){
+        UserInfo savedUserInfo = userService.registerUser(userInsertDTO);
 
+        return ResponseEntity.ok(savedUserInfo);
     }
     
     /**
@@ -30,7 +34,7 @@ public class UserController {
     public ResponseEntity<?> checkNickNameExist(@RequestBody Map<String, String> request){
         String nickname = request.get("nickname");
         Map<String, Boolean> response = new HashMap<>();
-        response.put("result", userService.isNickNameExist(nickname));
+        response.put("result", !userService.isNickNameExist(nickname));
 
         return ResponseEntity.ok().body(response);
     }

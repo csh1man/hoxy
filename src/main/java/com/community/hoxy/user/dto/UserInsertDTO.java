@@ -5,8 +5,9 @@ import java.util.Date;
 public class UserInsertDTO {
     private String id;
     private String pwd;
-    private String nickName;
+    private String nickname;
     private String company;
+    private String mbti;
     private Date regDate;
     private Date modDate;
 
@@ -26,12 +27,12 @@ public class UserInsertDTO {
         this.pwd = pwd;
     }
 
-    public String getNickName() {
-        return nickName;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getCompany() {
@@ -40,6 +41,14 @@ public class UserInsertDTO {
 
     public void setCompany(String company) {
         this.company = company;
+    }
+
+    public String getMbti() {
+        return mbti;
+    }
+
+    public void setMbti(String mbti) {
+        this.mbti = mbti;
     }
 
     public Date getRegDate() {

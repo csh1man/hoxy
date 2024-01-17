@@ -13,7 +13,14 @@ public class CompanyService {
     private CompanyRepository companyRepository;
 
     public List<CompanyInfo> getAllCompanies(){
-        return companyRepository.findAll();
+        List<CompanyInfo> companyInfos = companyRepository.findAll();
+        for(CompanyInfo companyInfo : companyInfos){
+            if(companyInfo.getEmailDomain().contains("@")){
+                companyInfo.setEmailDomain(companyInfo.getEmailDomain().replace("@",""));
+            }
+        }
+
+        return companyInfos;
     }
 
     /**
